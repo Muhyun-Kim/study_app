@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:riverpod/riverpod.dart';
 import 'package:study_app/db/db.dart';
 import 'package:study_app/models/study_model.dart';
@@ -16,4 +18,13 @@ class StudyDatabaseRepository {
   Future<void> insert(StudyModel studyModel) async {
     await _db.insert(studyModel);
   }
+
+  Future<List<StudyModel>> getAll() async {
+   return await _db.getAll();
+  }
+
+  Future<StudyModel> getOne(int id) async {
+   return await _db.getOne(id);
+  }
+  
 }

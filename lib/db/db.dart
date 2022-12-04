@@ -58,20 +58,41 @@ CREATE TABLE IF NOT EXISTS studyDatabse (
 
   Future<void> insert(StudyModel studyModel) async {
     final db = await _getDatabase();
-    print("insert studyDatabase: $studyModel");
 
     await db.insert(
       'studyDatabse',
       studyModel.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    print("insert studyDatabase: $studyModel");
+  }
+
+  Future<List<StudyModel>> getAll() async {
+    final db = await _getDatabase();
+    final List<Map<String, dynamic>> maps = await db.query('studyDatabse');
+    return List.generate(
+      maps.length,
+      (i) {
+        return StudyModel(
+          id: maps[i]['id'],
+          title: maps[i]['title'],
+        );
+      },
+    );
+  }
+
+  Future<StudyModel> getOne(int id) async {
+    final db = await _getDatabase();
+    final maps =
+        await db.rawQuery('SELECT * FROM studyDatabase WHERE id = ?', [id]);
+    return StudyModel.fromMap(maps[0]);
   }
 
   Future<void> update(int id, StudyModel studyModel) async {
     final db = await _getDatabase();
-    print("update studyDatabase: $studyModel");
     await db.update("studyDatabase", studyModel.toMap(),
         where: "id = ?", whereArgs: [id]);
+    print("update studyDatabase: $studyModel");
   }
 
   Future<void> delete(int id) async {

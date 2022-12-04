@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_app/screens/study_list_screen.dart';
 
 import 'add_list_screen.dart';
 
@@ -34,6 +35,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: const StudyListScreen(),
     );
   }
 }
