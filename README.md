@@ -2,6 +2,10 @@
 
 My first Flutter project.
 
+# design UI
+
+- (https://www.figma.com/file/VrpbfmfjbejZcNzmt7eFD5/MainStudy?node-id=0%3A1&t=sIlGEDL0m9QjGtCU-0)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
