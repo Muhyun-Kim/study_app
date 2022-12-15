@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:study_app/db/db_provider.dart';
 import 'package:study_app/models/study_model.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class StudyListScreen extends ConsumerWidget {
   const StudyListScreen({super.key});
 
   @override
+  //getAllを通じてdbが変わったらそれを伝える
   Widget build(BuildContext context, WidgetRef ref) {
     Future<List<StudyModel>> _getList() async {
       return await ref.watch(studyDatabaseProvider).getAll();
@@ -20,10 +22,28 @@ class StudyListScreen extends ConsumerWidget {
               itemCount: dataSnopShot.data!.length,
               itemBuilder: (context, index) {
                 StudyModel studyModel = dataSnopShot.data![index];
-                return ListTile(
-                  title: Text(studyModel.title),
-                  subtitle: Text(
-                    studyModel.id.toString(),
+
+                return Slidable(
+                  key: const ValueKey(0),
+                  endActionPane: const ActionPane(
+                    motion: ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        // An action can be bigger than the others.
+                        flex: 2,
+                        onPressed: null,
+                        backgroundColor: Color(0xFF7BC043),
+                        foregroundColor: Colors.white,
+                        icon: Icons.archive,
+                        label: 'Delete',
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    title: Text(studyModel.title),
+                    subtitle: Text(
+                      studyModel.id.toString(),
+                    ),
                   ),
                 );
               },

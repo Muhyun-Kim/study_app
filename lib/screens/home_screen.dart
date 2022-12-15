@@ -27,10 +27,11 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(Icons.add_circle_rounded),
             onPressed: () {
               showDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const AddListScreen();
-                  });
+                context: context,
+                builder: (BuildContext context) {
+                  return const AddListScreen();
+                },
+              );
             },
           ),
         ],

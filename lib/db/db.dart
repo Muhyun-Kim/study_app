@@ -11,6 +11,7 @@ import 'package:study_app/models/study_model.dart';
 const int _databaseVersion = 1;
 Database? _database;
 
+//db使用をAndroidとiOSで分ける
 Future<String> _getDbDirectory() async {
   if (Platform.isAndroid) {
     return await getDatabasesPath();
@@ -21,6 +22,7 @@ Future<String> _getDbDirectory() async {
   }
 }
 
+//dbがなければ作る、あれば更新する
 Future<Database> _getDatabase() async {
   final dbPath = join(await _getDbDirectory(), 'local.db');
   return _database ??= await openDatabase(
@@ -43,6 +45,7 @@ abstract class SqliteLocalDatabase {
 class StudyDatabase implements SqliteLocalDatabase {
   const StudyDatabase();
 
+//dbがない時にtableを作る
   Future<void> _initialize(Database db) async {
     await db.execute('''
 CREATE TABLE IF NOT EXISTS studyDatabse (
@@ -51,7 +54,6 @@ CREATE TABLE IF NOT EXISTS studyDatabse (
   ''');
   }
 
-  @override
   Future<void> onCreate(Database db) async {
     await _initialize(db);
   }
@@ -99,4 +101,6 @@ CREATE TABLE IF NOT EXISTS studyDatabse (
     final db = await _getDatabase();
     await db.delete('studyDatabase', where: 'id = ?', whereArgs: [id]);
   }
+
+
 }

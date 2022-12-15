@@ -17,14 +17,14 @@ class StudyDatabaseRepository {
 
   Future<void> insert(StudyModel studyModel) async {
     await _db.insert(studyModel);
+    ref.invalidate(studyDatabaseProvider);
   }
 
   Future<List<StudyModel>> getAll() async {
-   return await _db.getAll();
+    return await _db.getAll();
   }
 
   Future<StudyModel> getOne(int id) async {
-   return await _db.getOne(id);
+    return await _db.getOne(id);
   }
-  
 }

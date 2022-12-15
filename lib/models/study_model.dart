@@ -1,3 +1,5 @@
+//データベースに入る内容の定義
+
 class StudyModel {
   final int? id;
   final String title;
@@ -7,9 +9,10 @@ class StudyModel {
     required this.title,
   });
 
-  StudyModel.fromMap(Map<String, dynamic> item): 
-    id=item["id"], title= item["title"];
-  
+  StudyModel.fromMap(Map<String, dynamic> item)
+      : id = item["id"],
+        title = item["title"];
+
   Map<String, dynamic> toMap() {
     return ({
       "id": id,
