@@ -29,14 +29,14 @@ class StudyListScreen extends ConsumerWidget {
                     motion: ScrollMotion(),
                     children: [
                       SlidableAction(
-                        // An action can be bigger than the others.
                         flex: 2,
                         onPressed: null,
-                        backgroundColor: Color(0xFF7BC043),
+                        backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
-                        icon: Icons.archive,
+                        icon: Icons.delete,
                         label: 'Delete',
                       ),
+                      
                     ],
                   ),
                   child: ListTile(

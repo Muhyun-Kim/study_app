@@ -27,4 +27,8 @@ class StudyDatabaseRepository {
   Future<StudyModel> getOne(int id) async {
     return await _db.getOne(id);
   }
+
+  Future<int> delete(int id) async {
+    return await _db.delete(id);
+  }
 }
