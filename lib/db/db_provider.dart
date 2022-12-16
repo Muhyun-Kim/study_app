@@ -28,7 +28,8 @@ class StudyDatabaseRepository {
     return await _db.getOne(id);
   }
 
-  Future<int> delete(int id) async {
-    return await _db.delete(id);
+  Future<void> delete(int id) async {
+    await _db.delete(id);
+    ref.invalidate(studyDatabaseProvider);
   }
 }

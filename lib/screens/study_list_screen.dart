@@ -10,8 +10,14 @@ class StudyListScreen extends ConsumerWidget {
   @override
   //getAllを通じてdbが変わったらそれを伝える
   Widget build(BuildContext context, WidgetRef ref) {
+    final provider = ref.watch(studyDatabaseProvider);
+
     Future<List<StudyModel>> _getList() async {
-      return await ref.watch(studyDatabaseProvider).getAll();
+      return await provider.getAll();
+    }
+
+    void deleteRow(int id) {
+      provider.delete(id);
     }
 
     return FutureBuilder<List<StudyModel>>(
@@ -25,18 +31,19 @@ class StudyListScreen extends ConsumerWidget {
 
                 return Slidable(
                   key: const ValueKey(0),
-                  endActionPane: const ActionPane(
-                    motion: ScrollMotion(),
+                  endActionPane: ActionPane(
+                    motion: const ScrollMotion(),
                     children: [
                       SlidableAction(
+                        onPressed: (_) {
+                          deleteRow(studyModel.id!);
+                        },
                         flex: 2,
-                        onPressed: null,
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
                         label: 'Delete',
                       ),
-                      
                     ],
                   ),
                   child: ListTile(
