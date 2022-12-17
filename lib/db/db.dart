@@ -99,6 +99,6 @@ CREATE TABLE IF NOT EXISTS studyDatabse (
 
   Future<void> delete(int id) async {
     final db = await _getDatabase();
-    await db.delete("studyDatabse", where: '$id = ?', whereArgs: [id]);
+    await db.delete("studyDatabse", where: 'id = ?', whereArgs: [id]);
   }
 }
