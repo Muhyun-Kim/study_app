@@ -34,6 +34,14 @@ class StudyListScreen extends ConsumerWidget {
                   endActionPane: ActionPane(
                     motion: const ScrollMotion(),
                     children: [
+                      const SlidableAction(
+                        flex: 2,
+                        onPressed: null,
+                        backgroundColor: Color(0xFF7BC043),
+                        foregroundColor: Colors.white,
+                        icon: Icons.change_circle,
+                        label: '変更',
+                      ),
                       SlidableAction(
                         onPressed: (_) {
                           deleteRow(studyModel.id!);
@@ -42,15 +50,15 @@ class StudyListScreen extends ConsumerWidget {
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
-                        label: 'Delete',
+                        label: '削除',
                       ),
                     ],
                   ),
                   child: ListTile(
                     title: Text(studyModel.title),
-                    subtitle: Text(
-                      studyModel.id.toString(),
-                    ),
+                    // subtitle: Text(
+                    //   studyModel.id.toString(),
+                    // ),
                   ),
                 );
               },
