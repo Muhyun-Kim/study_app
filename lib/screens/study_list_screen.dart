@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:study_app/db/db_provider.dart';
 import 'package:study_app/models/study_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:study_app/screens/update_list_screen.dart';
 
 class StudyListScreen extends ConsumerWidget {
   const StudyListScreen({super.key});
@@ -21,23 +22,29 @@ class StudyListScreen extends ConsumerWidget {
     }
 
     return FutureBuilder<List<StudyModel>>(
-        future: _getList(), // a previously-obtained Future<String> or null
+        future: _getList(),
         builder: (context, dataSnopShot) {
           if (dataSnopShot.hasData) {
             return ListView.builder(
               itemCount: dataSnopShot.data!.length,
               itemBuilder: (context, index) {
                 StudyModel studyModel = dataSnopShot.data![index];
-
                 return Slidable(
                   key: const ValueKey(0),
                   endActionPane: ActionPane(
                     motion: const ScrollMotion(),
                     children: [
-                      const SlidableAction(
+                      SlidableAction(
                         flex: 2,
-                        onPressed: null,
-                        backgroundColor: Color(0xFF7BC043),
+                        onPressed: (_) {
+                          showDialog<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const UpdateListScreen();
+                            },
+                          );
+                        },
+                        backgroundColor: const Color(0xFF7BC043),
                         foregroundColor: Colors.white,
                         icon: Icons.change_circle,
                         label: '変更',
@@ -56,9 +63,6 @@ class StudyListScreen extends ConsumerWidget {
                   ),
                   child: ListTile(
                     title: Text(studyModel.title),
-                    // subtitle: Text(
-                    //   studyModel.id.toString(),
-                    // ),
                   ),
                 );
               },
