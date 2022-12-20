@@ -33,8 +33,8 @@ class StudyDatabaseRepository {
     ref.invalidate(studyDatabaseProvider);
   }
 
-  Future<void> update(int id, StudyModel studyModel) async {
-    await _db.update(id, studyModel);
+  Future<void> update(StudyModel studyModel) async {
+    await _db.update(studyModel.id!,studyModel);
     ref.invalidate(studyDatabaseProvider);
   }
 }

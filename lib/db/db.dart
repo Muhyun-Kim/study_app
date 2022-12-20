@@ -48,7 +48,7 @@ class StudyDatabase implements SqliteLocalDatabase {
 //dbがない時にtableを作る
   Future<void> _initialize(Database db) async {
     await db.execute('''
-CREATE TABLE IF NOT EXISTS studyDatabse (
+CREATE TABLE IF NOT EXISTS studyDatabase (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT)
   ''');
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS studyDatabse (
     final db = await _getDatabase();
 
     await db.insert(
-      'studyDatabse',
+      'studyDatabase',
       studyModel.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS studyDatabse (
 
   Future<List<StudyModel>> getAll() async {
     final db = await _getDatabase();
-    final List<Map<String, dynamic>> maps = await db.query('studyDatabse');
+    final List<Map<String, dynamic>> maps = await db.query('studyDatabase');
     return List.generate(
       maps.length,
       (i) {
@@ -94,11 +94,12 @@ CREATE TABLE IF NOT EXISTS studyDatabse (
     final db = await _getDatabase();
     await db.update("studyDatabase", studyModel.toMap(),
         where: "id = ?", whereArgs: [id]);
-    print("update studyDatabse: $studyModel");
+
+    print("update studyDatabase: $studyModel");
   }
 
   Future<void> delete(int id) async {
     final db = await _getDatabase();
-    await db.delete("studyDatabse", where: 'id = ?', whereArgs: [id]);
+    await db.delete("studyDatabase", where: 'id = ?', whereArgs: [id]);
   }
 }

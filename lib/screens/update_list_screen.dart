@@ -4,14 +4,21 @@ import 'package:study_app/db/db_provider.dart';
 import 'package:study_app/models/study_model.dart';
 
 class UpdateListScreen extends ConsumerStatefulWidget {
-  const UpdateListScreen({Key? key}) : super(key: key);
+  const UpdateListScreen({
+    required this.id,
+    Key? key,
+  }) : super(key: key);
+
+  final int id;
 
   @override
   ConsumerState<UpdateListScreen> createState() => _UpdateListScreenState();
 }
 
 class _UpdateListScreenState extends ConsumerState<UpdateListScreen> {
+  int get id => widget.id;
   final TextEditingController _controller = TextEditingController();
+
   String titleText = "";
 
   @override
@@ -26,8 +33,7 @@ class _UpdateListScreenState extends ConsumerState<UpdateListScreen> {
           border: OutlineInputBorder(),
           labelText: '科目名',
         ),
-        onChanged: (String value) => titleText = value,
-        onSubmitted: (String value) => titleText = value,
+        onChanged: (text) => titleText = text,
       ),
       actions: <Widget>[
         TextButton(
@@ -45,7 +51,8 @@ class _UpdateListScreenState extends ConsumerState<UpdateListScreen> {
           ),
           child: const Text('変更'),
           onPressed: () async {
-            provider.update(StudyModel(title: titleText));
+            print(titleText);
+            provider.update(StudyModel(id: id, title: titleText));
             Navigator.of(context).pop();
           },
         ),

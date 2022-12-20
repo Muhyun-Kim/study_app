@@ -40,7 +40,7 @@ class StudyListScreen extends ConsumerWidget {
                           showDialog<void>(
                             context: context,
                             builder: (BuildContext context) {
-                              return const UpdateListScreen();
+                              return UpdateListScreen(id: studyModel.id!);
                             },
                           );
                         },
