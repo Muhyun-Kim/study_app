@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:2629365434610418704",
-      "lastPropertyId": "2:5634495154183917109",
+      "lastPropertyId": "4:6071912426983150533",
       "name": "PlanModel",
       "properties": [
         {
@@ -18,6 +18,11 @@
           "id": "2:5634495154183917109",
           "name": "title",
           "type": 9
+        },
+        {
+          "id": "4:6071912426983150533",
+          "name": "totalStudyTime",
+          "type": 6
         }
       ],
       "relations": []
@@ -31,7 +36,9 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    424143625549011502
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

@@ -22,7 +22,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(1, 2629365434610418704),
       name: 'PlanModel',
-      lastPropertyId: const IdUid(2, 5634495154183917109),
+      lastPropertyId: const IdUid(4, 6071912426983150533),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -34,6 +34,11 @@ final _entities = <ModelEntity>[
             id: const IdUid(2, 5634495154183917109),
             name: 'title',
             type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 6071912426983150533),
+            name: 'totalStudyTime',
+            type: 6,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -66,7 +71,7 @@ ModelDefinition getObjectBoxModel() {
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [424143625549011502],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -83,9 +88,10 @@ ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (PlanModel object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
-          fbb.startTable(3);
+          fbb.startTable(5);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, titleOffset);
+          fbb.addInt64(3, object.totalStudyTime);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -94,9 +100,11 @@ ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
 
           final object = PlanModel(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
               title: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 6, ''))
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              totalStudyTime:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0));
 
           return object;
         })
@@ -113,4 +121,8 @@ class PlanModel_ {
   /// see [PlanModel.title]
   static final title =
       QueryStringProperty<PlanModel>(_entities[0].properties[1]);
+
+  /// see [PlanModel.totalStudyTime]
+  static final totalStudyTime =
+      QueryIntegerProperty<PlanModel>(_entities[0].properties[2]);
 }
