@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:study_app/screen/home_screen.dart';
 
 void main() {
-  runApp(const App());
+  runApp(const ProviderScope(child: App()));
 }
 
 class App extends StatelessWidget {
@@ -22,7 +23,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home:  HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
