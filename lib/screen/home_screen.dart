@@ -65,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                           studyPlanBox?.put(studyPlan);
                           fetchStudyPlans();
+                          Navigator.pop(context);
                         }
                       },
                       child: const Text("OK"),
@@ -81,10 +82,14 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: studyPlans.length,
         itemBuilder: (context, index) {
           final studyPlan = studyPlans[index];
-          return PlanListWidget(studyPlan: studyPlan);
+          return PlanListWidget(
+            studyPlanBox: studyPlanBox,
+            studyPlans: studyPlans,
+            studyPlan: studyPlan,
+            fetchStudyPlans: fetchStudyPlans,
+          );
         },
       ),
     );
   }
 }
-
