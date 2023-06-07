@@ -1,3 +1,7 @@
+//Author : muhyun-kim
+//Modified : 2023/06/04
+//Function : ホーム画面
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:study_app/model/plan_model.dart';
@@ -45,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
               showDialog(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
-                  title: const Text("勉強科目を入力してください"),
+                  title: const Text("勉強リスト追加"),
                   content: TextField(
                     onChanged: (value) {
                       titleText.value = value;
